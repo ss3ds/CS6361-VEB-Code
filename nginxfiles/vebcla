@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name vebcla.us.to www.vebcla.us.to;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/veb/cla.sock;
+    }
+}

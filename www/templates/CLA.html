@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.ctf}}/admin">Admin</a>
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.cla}}/">Register</a>
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.ctf}}/">Vote</a>
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.ctf}}/results">Results</a>
+{% endblock %}
+
+{% block content %}
+{% if votings|length > 0 %}
+<form action="/validation" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin">
+  <h2 class="w3-center">Register to get a voting code</h2>
+
+  <div class="w3-row w3-section">
+    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+      <div class="w3-rest">
+        <input class="w3-input w3-border" name="first" type="text" placeholder="First Name">
+      </div>
+  </div>
+  
+  <div class="w3-row w3-section">
+    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
+      <div class="w3-rest">
+        <input class="w3-input w3-border" name="last" type="text" placeholder="Last Name">
+      </div>
+  </div>
+  
+  <div class="w3-row w3-section">
+    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa"></i></div>
+      <div class="w3-rest">
+        <input class="w3-input w3-border" name="ssn" type="text" placeholder="SSN">
+      </div>
+  </div>
+  
+  <div class="w3-row w3-section">
+    <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa"></i></div>
+      <div class="w3-rest">
+        <select id="right-label" name="votingid">
+          {% for voting in votings %}
+          <option value="{{voting.voting_id}}">{{voting.voting_name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+  </div>
+  
+  <p class="w3-center">
+  <button class="w3-button w3-section w3-black w3-ripple"> Send </button>
+  </p>
+</form>
+
+{% if message %}
+<h2 class="w3-center">{{message}}</h2>
+{% endif %}
+{% else %}
+<h2 class="w3-center">No Votings Available</h2>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

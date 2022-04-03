@@ -1,0 +1,13 @@
+[Unit]
+Description=vebcla daemon
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/veb/
+
+ExecStart=/usr/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/veb/cla.sock wsgi_cla:app
+
+[Install]
+WantedBy=multi-user.target

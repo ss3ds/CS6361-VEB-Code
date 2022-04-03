@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.ctf}}/admin">Admin</a>
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.cla}}/">Register</a>
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.ctf}}/">Vote</a>
+<a style="width:25%" class="w3-bar-item w3-button" href="{{domains.ctf}}/results">Results</a>
+{% endblock %}
+
+{% block content %}
+  {% if votings|length > 0 %}
+    <h2 class="w3-center">Choose a voting</h2>
+    <div class="w3-container w3-padding-64 w3-pale-black w3-grayscale-min" id="us">
+      <p class="w3-center w3-xlarge">
+        {% for voting in votings %}
+        <a href="{{domains.ctf}}/results/{{voting.voting_id}}" class="w3-button w3-round w3-black w3-opacity w3-hover-opacity-off" style="padding:8px">{{voting.voting_name}}</a>
+        {% endfor %}
+      </p>
+    </div>
+  {% else %}
+  {% if not voting is defined %}<h2 class="w3-center">No Votings Available</h2>{% endif %}
+  {% endif %}
+
+
+{% if voting %}
+  <h2 class="w3-center">Result for {{voting[1]}}</h2>
+  {% if candidates %}
+    <div class="w3-container w3-padding-16 w3-pale-black w3-grayscale-min" id="us">
+    <div id="piechart" style="width: 100%; min-height: 450px;"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    // Draw the chart and set the chart values
+    function drawChart()
+    {
+      var votes = [['Candidate', 'Votes']]
+      {% for candidate in candidates %}
+      votes.push(['{{candidate[1]}}', {{candidate[2]}}])
+      {% endfor %}
+      var data = google.visualization.arrayToDataTable(votes);
+      var options = {};
+
+      // Display the chart inside the <div> element with id="piechart"
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+    if (document.addEventListener) {
+        window.addEventListener('resize', drawChart);
+    }
+    else if (document.attachEvent) {
+        window.attachEvent('onresize', drawChart);
+    }
+    else {
+        window.resize = drawChart;
+    }
+    </script>
+
+    <table class="w3-table">
+      <tr>
+      {% for candidate in candidates %}
+        <th>Voters for {{candidate[1]}}</th>
+      {% endfor %}
+      </tr>
+      <tr>
+      {% for candidate in candidates %}
+        <td>
+          <table class="w3-table">
+            {% for contributed_voter in contributed_voters %}
+            {% if contributed_voter[2] == candidate[0] %}
+            <tr>
+              <td>
+              {{contributed_voter[0]}}
+              </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </table>
+        </td>
+      {% endfor %}
+      </tr>
+    </table>
+    </div>
+  {% endif %}
+{% endif %}
+
+{% if message %}
+<h2 class="w3-center">{{message}}</h2>
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

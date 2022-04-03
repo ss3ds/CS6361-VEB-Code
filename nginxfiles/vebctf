@@ -1,0 +1,9 @@
+server {
+    listen 80;
+    server_name vebctf.us.to www.vebctf.us.to;
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/veb/ctf.sock;
+    }
+}
