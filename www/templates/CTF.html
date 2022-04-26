@@ -9,7 +9,7 @@
 
 {% block content %}
 {% if votings|length > 0 %}
-    <h2 class="w3-center">Choose a voting</h2>
+    <h2 class="w3-center">Choose an Election to vote</h2>
 
     <div class="w3-container w3-padding-64 w3-pale-black w3-grayscale-min" id="us">
         <p class="w3-center w3-xlarge">
@@ -23,7 +23,7 @@
     <h2 class="w3-center">{{message}}</h2>
     {% endif %}
 {% else %}
-<h2 class="w3-center">No Votings Available</h2>
+<h2 class="w3-center">No Elections are Available for Voting</h2>
 {% endif %}
 {% endblock %}
 

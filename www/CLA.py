@@ -101,9 +101,9 @@ def validate_voters(votingID, first, last, SSN):
         return first + " " + last + ", your validation number is: " + secret
     else:
         if result[0][5] == 1:
-            return "You have already voted"
+            return "You have already voted in this election"
         else:
-            return "You have already registered for this voting."
+            return "You have already registered for this election."
 
 @app.route("/notify", methods=["POST"])
 def add():

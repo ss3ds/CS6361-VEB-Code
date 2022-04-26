@@ -12,19 +12,19 @@
     <h2 class="w3-center">Welcome {{session.username}} <a href="/admin/logout">logout</a></h2>
     {% if addvoting %}
     <form action="/admin/addvoting" method="POST" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin">
-    <h2 class="w3-center">Voting</h2>
-    <input class="w3-input w3-border" name="voting_name" type="text" placeholder="Voting Name">
-    <input class="w3-input w3-border" name="voting_desc" type="text" placeholder="Voting Description">
-    <h2 class="w3-center">Candidates</h2>
+    <h2 class="w3-center">Configure New Election</h2>
+    <input class="w3-input w3-border" name="voting_name" type="text" placeholder="Election Name">
+    <input class="w3-input w3-border" name="voting_desc" type="text" placeholder="Election Description">
+    <h2 class="w3-center">Vote Options</h2>
     <button type="button" class="w3-button w3-section w3-black w3-ripple" id="add">Add</button>
     <button type="button" class="w3-button w3-section w3-black w3-ripple" id="remove">Remove</button>
     
     <input type="hidden" name="candidates_number" value="2" id="total_chq">
     <div id="new_chq">
-        <input class="w3-input w3-border" name="candidate_name1" type="text" placeholder="Candidate Name 1">
-        <input class="w3-input w3-border" name="candidate_name2" type="text" placeholder="Candidate Name 2">
+        <input class="w3-input w3-border" name="candidate_name1" type="text" placeholder="Option Name 1">
+        <input class="w3-input w3-border" name="candidate_name2" type="text" placeholder="Option Name 2">
     </div>
-    <button type="submit" class="w3-button w3-section w3-black w3-ripple" value="Add Voting">Add Voting</button>
+    <button type="submit" class="w3-button w3-section w3-black w3-ripple" value="Add Voting">Submit New Election</button>
     </form>
     {% endif %}
 {% else %}
@@ -45,7 +45,7 @@
 {% endblock %}
 
 {% block footer %}
-<a href="{{domains.ctf}}/admin/addvoting" style="width:100%" class="w3-bar-item w3-button">Add Voting</a>
+<a href="{{domains.ctf}}/admin/addvoting" style="width:100%" class="w3-bar-item w3-button">Configure a New Election</a>
 {% endblock %}
 
 {% block bodyend %}

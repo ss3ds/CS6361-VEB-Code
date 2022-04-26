@@ -169,8 +169,8 @@ def addvoting():
                 app.logger.info("OK")
             connection.commit()
             app.logger.info("OK")
-            return render_template('admin.html', domains=domains, addvoting=True, message="Voting added")
-        return render_template('admin.html', domains=domains, addvoting=True, message="Voting NOT added")
+            return render_template('admin.html', domains=domains, addvoting=True, message="Election added")
+        return render_template('admin.html', domains=domains, addvoting=True, message="Election NOT added")
 
 @app.route("/")
 def main():

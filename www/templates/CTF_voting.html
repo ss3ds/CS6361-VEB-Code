@@ -9,7 +9,7 @@
 
 {% block content %}
 <form action="/confirmation" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-black w3-margin">
-  <h2 class="w3-center">Vote</h2>
+  <h2 class="w3-center">Cast vote</h2>
 
   <input name="votingid" type="hidden" value="{{voting[0]}}">
   
@@ -23,7 +23,7 @@
   <div class="w3-row w3-section">
     <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa"></i></div>
       <div class="w3-rest">
-        <input class="w3-input w3-border" name="ssn" type="text" placeholder="SSN">
+        <input class="w3-input w3-border" name="ssn" type="text" placeholder="Enter a value to be publicly displayed to confirm your vote">
       </div>
   </div>
   
@@ -39,7 +39,7 @@
   </div>
   
   <p class="w3-center">
-  <button class="w3-button w3-section w3-black w3-ripple"> Send </button>
+  <button class="w3-button w3-section w3-black w3-ripple"> Vote </button>
   </p>
 </form>
 
