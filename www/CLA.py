@@ -98,7 +98,7 @@ def validate_voters(votingID, first, last, SSN):
         cursor.execute("INSERT INTO voters VALUES (?, ?, ?, ?, ?, ?)", (secret, first, last, SSN, votingID, 0))
         connection.commit()
         sendEligibleVoter(votingID, secret)
-        return first + " " + last + ", your validation number is: " + secret
+        return first + " " + last + ", your validation number is: [" + secret + "]. please, use it to vote"
     else:
         if result[0][5] == 1:
             return "You have already voted in this election"
